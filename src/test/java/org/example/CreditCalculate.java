@@ -16,12 +16,12 @@ public class CreditCalculate {
      */
     @Test
     public void testMonthPay() {
-        int month = 60;
-        int sum = 1_000_000;
-        double percent = 10;
-        double monthPercent = percent / (100 * 12);
-        double monthPay = calculator.monthPay(month, sum, percent);
-        double testSum = sum * (monthPercent / (1 - Math.pow(1 + monthPercent, -month)));
+        final int month = 60;
+        final int sum = 1_000_000;
+        final double percent = 10;
+        final double monthPercent = percent / (100 * 12);
+        final double monthPay = calculator.monthPay(month, sum, percent);
+        final double testSum = sum * (monthPercent / (1 - Math.pow(1 + monthPercent, -month)));
         assertTrue("Неверное вычисление ежемесячного платежа! тестовый платёж: "
                         + testSum + " не равен вычесленной: " + monthPay,
                 testSum == monthPay);
@@ -33,11 +33,14 @@ public class CreditCalculate {
      */
     @Test
     public void testOverpayment() {
-        int month = 48;
-        int sum = 1_000_000;
-        int monthPay = 18000;
-        int overpayment = calculator.overpayment(month, monthPay, sum);
-        assertTrue("Неверный расчёт переплаты по кредиту!", month * monthPay - sum == overpayment);
+        final int month = 48;
+        final int sum = 1_000_000;
+        final int monthPay = 18000;
+        final int overpayment = calculator.overpayment(month, monthPay, sum);
+        final int testOverpayment = month * monthPay - sum;
+        assertTrue("Неверный расчёт переплаты по кредиту! Тестовое значение: "
+                        + testOverpayment + " не равняется вычесленному: " + overpayment,
+                testOverpayment == overpayment);
     }
 
 
@@ -46,9 +49,12 @@ public class CreditCalculate {
      */
     @Test
     public void testAllSummCredit() {
-        int sum = 2_000_000;
-        int overpayment = 700_000;
-        int allSum = calculator.allSummCredit(sum, overpayment);
-        assertTrue("Неверный расчёт общей суммы к выплате!", sum + overpayment == allSum);
+        final int sum = 2_000_000;
+        final int overpayment = 700_000;
+        final int allSum = calculator.allSummCredit(sum, overpayment);
+        final int testAllSum = sum + overpayment;
+        assertTrue("Неверный расчёт общей суммы к выплате! Тестовое значение: "
+                        + testAllSum + " не равняется вычесленному: " + allSum,
+                testAllSum == allSum);
     }
 }
