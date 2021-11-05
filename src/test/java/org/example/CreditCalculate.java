@@ -21,8 +21,10 @@ public class CreditCalculate {
         double percent = 10;
         double monthPercent = percent / (100 * 12);
         double monthPay = calculator.monthPay(month, sum, percent);
-        assertTrue("Неверное вычисление ежемесячного платежа!",
-                sum * monthPercent / (1 - Math.pow(1 + monthPercent, -month))  == monthPay);
+        double testSum = sum * (monthPercent / (1 - Math.pow(1 + monthPercent, -month)));
+        assertTrue("Неверное вычисление ежемесячного платежа! тестовый платёж: "
+                        + testSum + " не равен вычесленной: " + monthPay,
+                testSum == monthPay);
     }
 
 
